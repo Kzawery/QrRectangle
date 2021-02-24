@@ -14,8 +14,8 @@ import com.google.android.gms.vision.barcode.Barcode;
 
 import java.util.List;
 
-import xyz.belvi.mobilevisionbarcodescanner.BarcodeBitmapScanner;
 import xyz.belvi.mobilevisionbarcodescanner.BarcodeRetriever;
+
 
 public class MainActivity extends AppCompatActivity  implements BarcodeRetriever {
 
@@ -26,10 +26,14 @@ public class MainActivity extends AppCompatActivity  implements BarcodeRetriever
         setContentView(R.layout.activity_main);
 
         BarcodeCapture barcodeCapture = (BarcodeCapture) getSupportFragmentManager().findFragmentById(R.id.barcode);
-        barcodeCapture.setShowDrawRect(true);
         barcodeCapture.setRetrieval(this);
-        Bitmap bitmap = null;
-        BarcodeBitmapScanner.scanBitmap(this, bitmap, Barcode.QR_CODE, this);
+
+        barcodeCapture.shouldAutoFocus(true);
+        barcodeCapture.setSupportMultipleScan(true);
+        barcodeCapture.setShowDrawRect(true);
+        barcodeCapture.setTouchAsCallback(true);
+//        Bitmap bitmap = null;
+//        BarcodeBitmapScanner.scanBitmap(this, bitmap, Barcode.QR_CODE, this);
     }
 
     @Override
